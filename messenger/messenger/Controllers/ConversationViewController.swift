@@ -1,19 +1,23 @@
 //
-//  ViewController.swift
+//  MainTabBarControllerViewController.swift
 //  messenger
 //
-//  Created by kobayashi emino on 2020/08/30.
+//  Created by kobayashi emino on 2020/08/31.
 //  Copyright © 2020 kobayashi emino. All rights reserved.
 //
 
 import UIKit
-import FirebaseAuth
+import Firebase
 
-class ConversationViewController: UIViewController {
-    
+class ConversationViewController: UITabBarController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
+        
+        let chatViewController = templeteViewController(image: "bubble.left.and.bubble.right", selectedImage: "bubble.left.and.bubble.right.fill", title: "Chat", view: ChatViewController())
+        let profileViewController = templeteViewController(image: "person", selectedImage: "person.fill", title: "Profile", view: ProfileViewController())
+        
+        viewControllers = [chatViewController, profileViewController]
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -30,5 +34,13 @@ class ConversationViewController: UIViewController {
             present(navVC, animated: false)
         }
     }
+    
+    private func templeteViewController(image: String, selectedImage: String, title: String, view: UIViewController = UIViewController()) -> UINavigationController {
+        let vc = view
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.tabBarItem.image = UIImage(systemName: image)
+        navVC.tabBarItem.selectedImage = UIImage(systemName: selectedImage)
+        navVC.modalPresentationStyle = .fullScreen
+        return navVC
+    }
 }
-
