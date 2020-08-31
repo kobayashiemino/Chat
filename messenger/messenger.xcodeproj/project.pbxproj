@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2370E9AAFC3D5902B67A21E8 /* libPods-messenger.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E5CC9E1DE50DB176815898C /* libPods-messenger.a */; };
+		78EDD79E4249696374A8F485 /* Pods_messenger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75CB172E8366D5FFE79FCF94 /* Pods_messenger.framework */; };
+		8209237D24FCA1B700F020BA /* DatabaseManeger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209237C24FCA1B700F020BA /* DatabaseManeger.swift */; };
+		8209237F24FCD90500F020BA /* MainTabBarControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209237E24FCD90500F020BA /* MainTabBarControllerViewController.swift */; };
+		8209238124FCDB3E00F020BA /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209238024FCDB3D00F020BA /* ChatViewController.swift */; };
 		82945B0224FB7226008DF5C0 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82945B0124FB7226008DF5C0 /* Extensions.swift */; };
+		82945B0424FC9134008DF5C0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 82945B0324FC9134008DF5C0 /* GoogleService-Info.plist */; };
 		82E177E724FB4C26004F1570 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E177E624FB4C26004F1570 /* AppDelegate.swift */; };
 		82E177E924FB4C27004F1570 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E177E824FB4C27004F1570 /* SceneDelegate.swift */; };
 		82E177EB24FB4C27004F1570 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E177EA24FB4C27004F1570 /* ConversationViewController.swift */; };
@@ -25,8 +29,12 @@
 
 /* Begin PBXFileReference section */
 		1C1289585154FC26BDEBA7CB /* Pods-messenger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-messenger.debug.xcconfig"; path = "Target Support Files/Pods-messenger/Pods-messenger.debug.xcconfig"; sourceTree = "<group>"; };
-		6E5CC9E1DE50DB176815898C /* libPods-messenger.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-messenger.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		75CB172E8366D5FFE79FCF94 /* Pods_messenger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_messenger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8209237C24FCA1B700F020BA /* DatabaseManeger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManeger.swift; sourceTree = "<group>"; };
+		8209237E24FCD90500F020BA /* MainTabBarControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarControllerViewController.swift; sourceTree = "<group>"; };
+		8209238024FCDB3D00F020BA /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		82945B0124FB7226008DF5C0 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		82945B0324FC9134008DF5C0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		82E177E324FB4C26004F1570 /* messenger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = messenger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82E177E624FB4C26004F1570 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		82E177E824FB4C27004F1570 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,7 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2370E9AAFC3D5902B67A21E8 /* libPods-messenger.a in Frameworks */,
+				78EDD79E4249696374A8F485 /* Pods_messenger.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +94,7 @@
 		82E177E524FB4C26004F1570 /* messenger */ = {
 			isa = PBXGroup;
 			children = (
+				82945B0324FC9134008DF5C0 /* GoogleService-Info.plist */,
 				82E177FA24FB4C3C004F1570 /* Resources */,
 				82E177FE24FB4CD5004F1570 /* Models */,
 				82E177FB24FB4C46004F1570 /* Views */,
@@ -101,6 +110,7 @@
 				82E177E624FB4C26004F1570 /* AppDelegate.swift */,
 				82E177E824FB4C27004F1570 /* SceneDelegate.swift */,
 				82945B0124FB7226008DF5C0 /* Extensions.swift */,
+				8209237C24FCA1B700F020BA /* DatabaseManeger.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -118,11 +128,13 @@
 			isa = PBXGroup;
 			children = (
 				82E177EA24FB4C27004F1570 /* ConversationViewController.swift */,
+				8209237E24FCD90500F020BA /* MainTabBarControllerViewController.swift */,
 				82E1780B24FB4F18004F1570 /* Login */,
 				82E1780324FB4DF1004F1570 /* PhotoViewerViewController.swift */,
 				82E1780524FB4E13004F1570 /* VideoPlayerViewController.swift */,
 				82E1780724FB4E28004F1570 /* NewConversationViewController.swift */,
 				82E1780924FB4E37004F1570 /* ProfileViewController.swift */,
+				8209238024FCDB3D00F020BA /* ChatViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -155,7 +167,7 @@
 		ABCB577D399E9F4CA551D839 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6E5CC9E1DE50DB176815898C /* libPods-messenger.a */,
+				75CB172E8366D5FFE79FCF94 /* Pods_messenger.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -171,7 +183,7 @@
 				82E177DF24FB4C26004F1570 /* Sources */,
 				82E177E024FB4C26004F1570 /* Frameworks */,
 				82E177E124FB4C26004F1570 /* Resources */,
-				0BD3BD768935E8E61D3E5889 /* [CP] Copy Pods Resources */,
+				12EE7F9F6E52B2C6F2BE95F3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -221,6 +233,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				82E177F324FB4C2B004F1570 /* LaunchScreen.storyboard in Resources */,
+				82945B0424FC9134008DF5C0 /* GoogleService-Info.plist in Resources */,
 				82E177F024FB4C2B004F1570 /* Assets.xcassets in Resources */,
 				82E177EE24FB4C27004F1570 /* Main.storyboard in Resources */,
 			);
@@ -229,21 +242,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0BD3BD768935E8E61D3E5889 /* [CP] Copy Pods Resources */ = {
+		12EE7F9F6E52B2C6F2BE95F3 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-messenger/Pods-messenger-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-messenger/Pods-messenger-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-messenger/Pods-messenger-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-messenger/Pods-messenger-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-messenger/Pods-messenger-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-messenger/Pods-messenger-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D10553513C96156621A146EF /* [CP] Check Pods Manifest.lock */ = {
@@ -278,13 +291,16 @@
 				82E1780024FB4DC8004F1570 /* LoginViewController.swift in Sources */,
 				82E177EB24FB4C27004F1570 /* ConversationViewController.swift in Sources */,
 				82E1780824FB4E28004F1570 /* NewConversationViewController.swift in Sources */,
+				8209237D24FCA1B700F020BA /* DatabaseManeger.swift in Sources */,
 				82E1780224FB4DD7004F1570 /* RegiserViewController.swift in Sources */,
 				82E1780624FB4E13004F1570 /* VideoPlayerViewController.swift in Sources */,
 				82945B0224FB7226008DF5C0 /* Extensions.swift in Sources */,
 				82E177E724FB4C26004F1570 /* AppDelegate.swift in Sources */,
 				82E1780A24FB4E37004F1570 /* ProfileViewController.swift in Sources */,
+				8209238124FCDB3E00F020BA /* ChatViewController.swift in Sources */,
 				82E177E924FB4C27004F1570 /* SceneDelegate.swift in Sources */,
 				82E1780424FB4DF1004F1570 /* PhotoViewerViewController.swift in Sources */,
+				8209237F24FCD90500F020BA /* MainTabBarControllerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

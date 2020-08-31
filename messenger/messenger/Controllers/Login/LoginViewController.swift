@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class LoginViewController: UIViewController {
     
@@ -52,7 +53,7 @@ class LoginViewController: UIViewController {
     }()
     
     private let loginButton: UIButton = {
-       let button = UIButton()
+        let button = UIButton()
         button.setTitle("Log In", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .link
@@ -98,9 +99,9 @@ class LoginViewController: UIViewController {
                                       width: view.width - 60,
                                       height: 52)
         passwordTextField.frame = CGRect(x: 30,
-                                      y: emailTextField.bottom + 10,
-                                      width: view.width - 60,
-                                      height: 52)
+                                         y: emailTextField.bottom + 10,
+                                         width: view.width - 60,
+                                         height: 52)
         loginButton.frame = CGRect(x: 30,
                                    y: passwordTextField.bottom + 10,
                                    width: view.width - 60,
@@ -112,15 +113,28 @@ class LoginViewController: UIViewController {
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
         
-        if let emailField = emailTextField.text, let passwordField = passwordTextField.text, !emailField.isEmpty, !passwordField.isEmpty, passwordField.count >= 6 {
-            alertUserLoginError()
-            return
+        guard let email = emailTextField.text,
+            let password = passwordTextField.text,
+            !email.isEmpty,
+            !password.isEmpty,
+            password.count >= 6 else {
+                alertUserLoginError()
+                return
+        }
+        
+        FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
+            guard let strongSelf = self else { return }
+            guard authResult != nil, error == nil else {
+                strongSelf.alertUserLoginError(message: "Looks like user account for that email already exists")
+                return
+            }
+            strongSelf.navigationController?.dismiss(animated: true, completion: nil)
         }
     }
     
-    private func alertUserLoginError() {
+    private func alertUserLoginError(message: String = "please Enter all information to create a new account") {
         let alert = UIAlertController(title: "Woops",
-                                      message: "please Enter all information to login",
+                                      message: message,
                                       preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "dismiss",
                                       style: .cancel,

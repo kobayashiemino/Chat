@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class RegiserViewController: UIViewController {
     
@@ -17,7 +18,7 @@ class RegiserViewController: UIViewController {
     
     private let imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "person")
+        imageView.image = UIImage(systemName: "person.circle")
         imageView.tintColor = .gray
         imageView.contentMode = .scaleAspectFit
         imageView.layer.masksToBounds = true
@@ -139,20 +140,21 @@ class RegiserViewController: UIViewController {
                                  width: size,
                                  height: size)
         imageView.layer.cornerRadius = imageView.width / 2
-        emailTextField.frame = CGRect(x: 30,
+
+        firstNameTextField.frame = CGRect(x: 30,
                                       y: imageView.bottom + 10,
                                       width: view.width - 60,
                                       height: 52)
-        firstNameTextField.frame = CGRect(x: 30,
-                                          y: emailTextField.bottom + 10,
+        lastNameTextField.frame = CGRect(x: 30,
+                                          y: firstNameTextField.bottom + 10,
                                           width: view.width - 60,
                                           height: 52)
-        lastNameTextField.frame = CGRect(x: 30,
-                                         y: firstNameTextField.bottom + 10,
+        emailTextField.frame = CGRect(x: 30,
+                                         y: lastNameTextField.bottom + 10,
                                          width: view.width - 60,
                                          height: 52)
         passwordTextField.frame = CGRect(x: 30,
-                                         y: lastNameTextField.bottom + 10,
+                                         y: emailTextField.bottom + 10,
                                          width: view.width - 60,
                                          height: 52)
         registerButton.frame = CGRect(x: 30,
@@ -168,15 +170,40 @@ class RegiserViewController: UIViewController {
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
         
-        if let emailField = emailTextField.text, let passwordField = passwordTextField.text, !emailField.isEmpty, !passwordField.isEmpty, passwordField.count >= 6 {
-            alertUserregisterError()
-            return
+        guard let firstname = firstNameTextField.text,
+            let lastname = lastNameTextField.text,
+            let email = emailTextField.text,
+            let password = passwordTextField.text,
+            !firstname.isEmpty,
+            !lastname.isEmpty,
+            !email.isEmpty,
+            !password.isEmpty,
+            password.count >= 6 else {
+                alertUserregisterError()
+                return
+        }
+        
+        DatabaseManeger.shared.userExists(with: email) { [weak self] exists in
+            guard let strongSelf = self else { return }
+            
+            guard !exists else {
+                strongSelf.alertUserregisterError(message: "Looks like user account for that email already exists")
+                return
+            }
+            FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password) {authResult, error in
+                guard authResult != nil, error == nil else {
+                    return
+                }
+                strongSelf.navigationController?.dismiss(animated: true, completion: nil)
+                
+                DatabaseManeger.shared.insertUser(with: ChatAppUser(firstname: firstname, lastname: lastname, emailAdress: email))
+            }
         }
     }
     
-    private func alertUserregisterError() {
+    private func alertUserregisterError(message: String = "please Enter all information to create a new account") {
         let alert = UIAlertController(title: "Woops",
-                                      message: "please Enter all information to create a new account",
+                                      message: message,
                                       preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "dismiss",
                                       style: .cancel,
